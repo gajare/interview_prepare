@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+func main() {
+	var n = 12
+	var count = 0
+	for i := 2; i < n/2; i++ {
+		if n%i == 0 {
+			count++
+			break
+		}
+	}
+	if count == 0 && n != 1 {
+		fmt.Println("number is prime number")
+	} else {
+		fmt.Println("Not prime")
+	}
+}
