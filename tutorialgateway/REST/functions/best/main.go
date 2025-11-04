@@ -4,17 +4,18 @@ import "fmt"
 
 func Cal(op string) func(int) func() {
 	return func(i int) func() {
-		if op == "square" {
+		switch op {
+		case "square":
 			return func() {
-				fmt.Println("square", i*i)
+				fmt.Println("square :", i*i)
 			}
-		} else if op == "cube" {
+		case "cube":
 			return func() {
 				fmt.Println("cube :", i*i*i)
 			}
-		} else {
+		default:
 			return func() {
-				fmt.Println("Invalide operation")
+				fmt.Println("wrong input text")
 			}
 		}
 	}
@@ -25,6 +26,11 @@ func main() {
 	res := operation(5)
 	res()
 	Cal("cube")(2)()
+	Cal("Amol")(2)()
+	Cal("cube")      // not invoke golang igore return value
+	Cal("cube")(2)   // not invoke golang igore return value
+	Cal("Amol")(2)() // invoked
+
 }
 
 //func RequireRole(requiredRole string) func(next http.Handler) http.Handler
